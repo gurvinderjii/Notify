@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Notify</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="notify">Notify</string>
+    <string name="powered_by_codezlab">Powered by Codezlab</string>
+</resources>

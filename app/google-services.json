@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "657905313597",
+    "project_id": "notify-64ca5",
+    "storage_bucket": "notify-64ca5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657905313597:android:80aba2712e7800caa50754",
+        "android_client_info": {
+          "package_name": "com.codezlab.notify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657905313597-j087hho5opf543uu2gnce1d6b3ot4hpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDygxTqyE8M-FnMPDXbrZVQBRcTGEl0gjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657905313597-j087hho5opf543uu2gnce1d6b3ot4hpb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout main;
     TextView title, message;
     public static String token;
-    private boolean isFirst = true;
 
+    private Utils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 message.clearFocus();
             }
         });
+        utils = new Utils(MainActivity.this);
     }
 
     public void hideKeyborad(View view){
@@ -99,15 +100,16 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 isNotificationPermissionGranted = true;
                 Log.d("Permission: ","Accessed");
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (isFirst){
+                if(utils.isFirstLaunch()){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                             Utils.showNotification(MainActivity.this,"Welcome to notify","This app is designed by Gurvinder Singh.");
-                            isFirst = false;
                         }
-                    }
-                },2000);
+                    },2000);
+                    utils.setIsFirstTimeLaunch(false);
+                }
+
             }else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(permissions,80);
@@ -122,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
             super.onNewToken(token);
             Log.d("Token","Refreshed token: "+ token);
         }
-
         @Override
         public void onMessageReceived(@NonNull RemoteMessage message) {
             super.onMessageReceived(message);

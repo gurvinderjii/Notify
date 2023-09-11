@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout main;
     TextView title, message;
     public static String token;
+    private boolean isFirst = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions,80);
         }
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +99,15 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 isNotificationPermissionGranted = true;
                 Log.d("Permission: ","Accessed");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isFirst){
+                            Utils.showNotification(MainActivity.this,"Welcome to notify","This app is designed by Gurvinder Singh.");
+                            isFirst = false;
+                        }
+                    }
+                },2000);
             }else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(permissions,80);

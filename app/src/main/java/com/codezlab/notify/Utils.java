@@ -21,11 +21,11 @@ public class Utils {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Bitmap largeIcon = ((BitmapDrawable)(ResourcesCompat.getDrawable(context.getResources(),R.drawable.icon,null))).getBitmap();
         Notification newMSG;
-        long[] vibrate = {0, 200,500, 200};
-        VibrationEffect vibrationEffect = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            vibrationEffect = VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE);
-        }
+        long[] vibrate = {0,400,200,400};
+//        VibrationEffect vibrationEffect = null;
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//            vibrationEffect = VibrationEffect.createWaveform(vibrate,1);
+//        }
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             newMSG = new Notification.Builder(context)
@@ -35,9 +35,7 @@ public class Utils {
                     .setContentText(msg)
                     .setSmallIcon(R.drawable.icon)
                     .build();
-            if (vibrator != null && vibrator.hasVibrator()) {
-                vibrator.vibrate(vibrationEffect);
-            }
+            vibrator.vibrate(vibrate,-1);
             manager.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"Messages",NotificationManager.IMPORTANCE_HIGH));
         }else {
             newMSG = new Notification.Builder(context)
